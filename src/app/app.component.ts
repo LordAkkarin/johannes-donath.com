@@ -27,7 +27,6 @@ export class AppComponent implements OnInit{
          * {@inheritDoc}
          */
         ngOnInit():any {
-                console.log('Hello world!');
                 $('#page-loader').dimmer('hide');
         }
 }
