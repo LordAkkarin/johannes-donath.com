@@ -25,6 +25,7 @@ import less from 'gulp-less';
 import path from 'path';
 import semanticBuild from './semantic/tasks/build';
 import semanticBuildCss from './semantic/tasks/build/css';
+import sourcemaps from 'gulp-sourcemaps';
 import tsc from 'gulp-typescript';
 
 // generally prepare external libraries regardless of which task is actually executed
@@ -111,7 +112,9 @@ gulp.task('html', () => {
  */
 gulp.task('script', () => {
         return gulp.src(path.join(__dirname, 'src/app/**/*.ts'))
+                .pipe(sourcemaps.init())
                 .pipe(tsc(typescriptProject))
+                .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/app')))
                 .pipe(sync.stream());
 });
@@ -191,6 +194,7 @@ gulp.task('serve', ['build'], () => {
  */
 gulp.task('stylesheet', () => {
         return gulp.src(path.join(__dirname, 'src/less/**/*.less'))
+                .pipe(sourcemaps.init())
                 .pipe(less())
                 .pipe(autoprefixer({
                         browsers: ['last 2 versions'],
@@ -199,6 +203,7 @@ gulp.task('stylesheet', () => {
                 .pipe(cleanCSS({debug: true}, function (details) {
                         console.log('Compressed ' + details.name + ' from ' + details.stats.originalSize + ' to ' + details.stats.minifiedSize + ' bytes');
                 }))
+                .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/style/')))
                 .pipe(sync.stream());
 });
