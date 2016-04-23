@@ -15,26 +15,28 @@
  * limitations under the License.
  */
 import {Component, OnInit} from "angular2/core";
-import {CodeService} from "./code.service";
+import {IndexComponent} from "./index.component";
+import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 declare const $:any;
 
 @Component({
-        selector:    'portfolio',
-        templateUrl: 'partial/index.html',
-        providers:   [CodeService]
+        selector: 'portfolio',
+        template: `<router-outlet></router-outlet>`,
+        directives: [ROUTER_DIRECTIVES]
 })
-export class AppComponent implements OnInit {
-        private codeService:CodeService;
-
-        constructor(private codeService:CodeService) {
-                this.codeService = codeService;
+@RouteConfig([
+        {
+                path: '/',
+                name: 'Index',
+                component: IndexComponent
         }
+])
+export class AppComponent implements OnInit {
 
         /**
          * {@inheritDoc}
          */
         ngOnInit():any {
                 $('#page-loader').dimmer('hide');
-                this.codeService.printCode('#code-container > pre > .content');
         }
 }

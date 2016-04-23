@@ -17,9 +17,10 @@
  */
 import {bootstrap} from "angular2/platform/browser";
 import {AppComponent} from "./app.component";
+import {ROUTER_PROVIDERS} from 'angular2/router';
 
 /**
  * As per Angular2 requirements we will manually bootstrap the application. This will automatically register context
  * objects for the passed component (in this case <portfolio>).
  */
-bootstrap(AppComponent);
+bootstrap(AppComponent, [ROUTER_PROVIDERS]);
