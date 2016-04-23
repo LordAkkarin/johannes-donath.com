@@ -27,6 +27,7 @@ import semanticBuild from './semantic/tasks/build';
 import semanticBuildCss from './semantic/tasks/build/css';
 import sourcemaps from 'gulp-sourcemaps';
 import tsc from 'gulp-typescript';
+import uglify from 'gulp-uglify';
 
 // generally prepare external libraries regardless of which task is actually executed
 const sync = browserSync.create();
@@ -114,6 +115,7 @@ gulp.task('script', () => {
         return gulp.src(path.join(__dirname, 'src/app/**/*.ts'))
                 .pipe(sourcemaps.init())
                 .pipe(tsc(typescriptProject))
+                .pipe(uglify())
                 .pipe(sourcemaps.write('.'))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/app')))
                 .pipe(sync.stream());
