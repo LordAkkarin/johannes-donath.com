@@ -14,10 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Component} from 'angular2/core';
+import {Component, OnInit} from 'angular2/core';
+declare var $:any;
 
 @Component({
         selector: 'portfolio',
         templateUrl: 'partial/index.html'
 })
-export class AppComponent { }
+export class AppComponent implements OnInit{
+
+        /**
+         * {@inheritDoc}
+         */
+        ngOnInit():any {
+                console.log('Hello world!');
+                $('#page-loader').dimmer('hide');
+        }
+}

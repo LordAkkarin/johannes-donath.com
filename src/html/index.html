@@ -23,6 +23,20 @@
                 <!-- SystemJS -->
                 <script>
                         System.config({
+                                paths: {
+                                        jquery: '3rdParty/jquery/dist/jquery.min.js',
+                                        semantic: 'semantic/semantic.min.js'
+                                },
+                                meta: {
+                                        '3rdParty/jquery/dist/jquery.min.js': {
+                                                format: 'global',
+                                                exports: '$'
+                                        },
+                                        'semantic/semantic.min.js': {
+                                                format: 'global',
+                                                deps: ['jquery']
+                                        }
+                                },
                                 packages: {
                                         app: {
                                                 format: 'register',
@@ -30,16 +44,29 @@
                                         }
                                 }
                         });
-                        System.import('app/main').then(null, console.error.bind(console));
+
+                        System.import('semantic').then(function() {
+                                $('#page-loader').dimmer({
+                                        duration: {
+                                                show: 0
+                                        }
+                                });
+
+                                $('#page-loader').dimmer('show');
+
+                                window.setTimeout(function() {
+                                        System.import('app/main').then(null, console.error.bind(console));
+                                }, 500);
+                        });
                 </script>
         </head>
         <body>
-                <portfolio>
-                        <div id="page-loader" class="ui blurring basic segment">
-                                <div class="ui active dimmer">
-                                        <div class="ui loader"></div>
-                                </div>
+                <div id="page-container" class="ui basic blurring segment">
+                        <portfolio></portfolio>
+
+                        <div id="page-loader" class="ui page dimmer">
+                                <div class="ui loader"></div>
                         </div>
-                </portfolio>
+                </div>
         </body>
 </html>
