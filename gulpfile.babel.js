@@ -15,9 +15,13 @@
  * limitations under the License.
  */
 'use strict';
+import browserSync from 'browser-sync';
 import gulp from 'gulp';
 import htmlmin from 'gulp-htmlmin';
 import path from 'path';
+
+// generally create a browser sync instance regardless of the task we are running at the moment
+const sync = browserSync.create();
 
 /**
  * Build
@@ -35,6 +39,14 @@ gulp.task('build', ['html']);
 gulp.task('default', ['build']);
 
 /**
+ * Development
+ *
+ * An entry point for users who wish to tinker with the application without worrying about manually invoking the
+ * compiler or reloading the website.
+ */
+gulp.task('development', ['serve']);
+
+/**
  * HTML
  *
  * Copies all static HTML files to the distribution directory and strips unnecessary characters such as whitespaces and
@@ -49,5 +61,22 @@ gulp.task('html', () => {
                         minifyJS:           true,
                         removeComments:     true
                 }))
-                .pipe(gulp.dest(path.join(__dirname, 'dist/')));
+                .pipe(gulp.dest(path.join(__dirname, 'dist/')))
+                .pipe(sync.stream());
+});
+
+/**
+ * Serve
+ *
+ * Provides a local web server which automatically reloads the website on all viewing browsers when a change to the
+ * source is detected. Also transpiles and copies all application resources to the dist directory when changed.
+ */
+gulp.task('serve', () => {
+        // Initialize Browser Sync to handle automatic updates within the developer's browser.
+        sync.init({
+                server: path.join(__dirname, 'dist/')
+        });
+
+        // Instruct Gulp to watch for file changes and issue their corresponding tasks
+        gulp.watch(path.join(__dirname, 'src/html/**/*.html'), ['html']);
 });
