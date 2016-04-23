@@ -30,16 +30,17 @@ declare const $:any;
         {
                 path: '/',
                 name: 'Index',
+                component: IndexComponent,
+                useAsDefault: true
+        },
+        {
+                path: '/references',
+                name: 'References',
                 component: IndexComponent
         },
         {
-                path: '/development',
-                name: 'Development',
-                component: IndexComponent
-        },
-        {
-                path: '/game-design',
-                name: 'GameDesign',
+                path: '/open-source',
+                name: 'OpenSource',
                 component: IndexComponent
         }
 ])
