@@ -27,7 +27,7 @@ export abstract class PageComponent implements OnActivate, OnDeactivate {
          */
         routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
                 return new Promise((resolve, reject) => {
-                        $('portfolio').slideDown(250, function() {
+                        $('#route-content').slideDown(250, function() {
                                 resolve();
                         });
                 });
@@ -38,7 +38,7 @@ export abstract class PageComponent implements OnActivate, OnDeactivate {
          */
         routerOnDeactivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
                 return new Promise((resolve, reject) => {
-                        $('portfolio').slideUp(250, function() {
+                        $('#route-content').slideUp(250, function() {
                                 resolve();
                         });
                 });

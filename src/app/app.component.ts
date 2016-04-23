@@ -22,7 +22,7 @@ declare const $:any;
 
 @Component({
         selector: 'portfolio',
-        template: `<router-outlet></router-outlet>`,
+        template: `<section id="route-content" style="display: none;"><router-outlet></router-outlet></section>`,
         providers:   [CodeService],
         directives: [ROUTER_DIRECTIVES]
 })
