@@ -34,7 +34,7 @@ const typescriptProject = tsc.createProject(path.join(__dirname, 'tsconfig.json'
  * A task which performs all relevant operations to copy and transpile the application resources into a browser friendly
  * format.
  */
-gulp.task('build', ['clean', 'html', 'semantic-copy', 'script']);
+gulp.task('build', ['dependencies', 'html', 'semantic-copy', 'script']);
 
 /**
  * Default
@@ -65,7 +65,7 @@ gulp.task('clean', () => {
  *
  * Copies a set of known application dependencies to their respective directory within the distribution.
  */
-gulp.task('dependencies', ['clean'], () => {
+gulp.task('dependencies', () => {
         return gulp.src([
                         'es6-shim/es6-shim.min.js',
                         'systemjs/dist/system-polyfills.js',
@@ -88,7 +88,7 @@ gulp.task('dependencies', ['clean'], () => {
  * Copies all static HTML files to the distribution directory and strips unnecessary characters such as whitespaces and
  * newlines.
  */
-gulp.task('html', ['clean'], () => {
+gulp.task('html', () => {
         return gulp.src(path.join(__dirname, 'src/html/**/*.html'))
                 .pipe(htmlmin({
                         caseSensitive:      true,
@@ -106,7 +106,7 @@ gulp.task('html', ['clean'], () => {
  *
  * Transpiles all local Typescript files and copies them into the distribution directory.
  */
-gulp.task('script', ['clean', 'dependencies'], () => {
+gulp.task('script', () => {
         return gulp.src(path.join(__dirname, 'src/app/**/*.ts'))
                 .pipe(tsc(typescriptProject))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/app')))
@@ -121,14 +121,14 @@ gulp.task('script', ['clean', 'dependencies'], () => {
  * Note: Due to the way these integration tasks are written, a call to this task may only occur once per gulp session
  * and thus it may not be used in combination with a watcher.
  */
-gulp.task('semantic', ['clean'], semanticBuild);
+gulp.task('semantic', semanticBuild);
 
 /**
  * Semantic CSS
  *
  * Provides an imported task which builds the Semantic UI stylesheets.
  */
-gulp.task('semantic-css', ['clean'], semanticBuildCss);
+gulp.task('semantic-css', semanticBuildCss);
 
 /**
  * Semantic Copy
