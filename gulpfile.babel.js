@@ -22,19 +22,11 @@ import htmlmin from 'gulp-htmlmin';
 import path from 'path';
 import semanticBuild from './semantic/tasks/build';
 import semanticBuildCss from './semantic/tasks/build/css';
-import typescript from 'typescript';
-import typescriptTask from 'gulp-typescript';
+import tsc from 'gulp-typescript';
 
-// generally create a browser sync instance regardless of the task we are running at the moment
+// generally prepare external libraries regardless of which task is actually executed
 const sync = browserSync.create();
-
-// generally load the TypeScript project configuration regardless of the task we are running at the moment
-const typescriptProject = typescriptTask.createProject(
-        path.join(__dirname, 'tsconfig.json'),
-        {
-                typescript: typescript
-        }
-);
+const typescriptProject = tsc.createProject(path.join(__dirname, 'tsconfig.json'));
 
 /**
  * Build
@@ -115,11 +107,8 @@ gulp.task('html', ['clean'], () => {
  * Transpiles all local Typescript files and copies them into the distribution directory.
  */
 gulp.task('script', ['clean', 'dependencies'], () => {
-        return gulp.src([
-                        path.join(__dirname, 'src/app/**/*.ts')
-                ])
-                .pipe(typescriptTask(typescriptProject))
-                .js
+        return gulp.src(path.join(__dirname, 'src/app/**/*.ts'))
+                .pipe(tsc(typescriptProject))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/app')))
                 .pipe(sync.stream());
 });
