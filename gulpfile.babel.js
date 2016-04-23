@@ -39,7 +39,7 @@ const typescriptProject = tsc.createProject(path.join(__dirname, 'tsconfig.json'
  * A task which performs all relevant operations to copy and transpile the application resources into a browser friendly
  * format.
  */
-gulp.task('build', ['dependencies', 'html', 'semantic-copy', 'script', 'stylesheet']);
+gulp.task('build', ['dependencies', 'data', 'html', 'semantic-copy', 'script', 'stylesheet']);
 
 /**
  * Default
@@ -63,6 +63,16 @@ gulp.task('development', ['serve']);
  */
 gulp.task('clean', () => {
         return del(path.join(__dirname, 'dist'));
+});
+
+/**
+ * Data
+ *
+ * Copies a set of mock data which is used in random parts of the website to the distribution directory.
+ */
+gulp.task('data', () => {
+        return gulp.src(path.join(__dirname, 'src/data/**/*'))
+                .pipe(gulp.dest(path.join(__dirname, 'dist/data')));
 });
 
 /**
@@ -189,6 +199,7 @@ gulp.task('serve', ['build'], () => {
         gulp.watch(path.join(__dirname, 'semantic/src/site/**/*'), ['semantic-copy-css']);
         gulp.watch(path.join(__dirname, 'src/less/**/*.less'), ['stylesheet']);
         gulp.watch(path.join(__dirname, 'src/app/**/*.ts'), ['script']);
+        gulp.watch(path.join(__dirname, 'src/data/**/*'), ['data']);
 });
 
 /**
