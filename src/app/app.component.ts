@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 import {Component, OnInit} from 'angular2/core';
-declare var $:any;
+declare const $:any;
 
 @Component({
         selector: 'portfolio',
