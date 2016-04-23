@@ -22,9 +22,19 @@ import htmlmin from 'gulp-htmlmin';
 import path from 'path';
 import semanticBuild from './semantic/tasks/build';
 import semanticBuildCss from './semantic/tasks/build/css';
+import typescript from 'typescript';
+import typescriptTask from 'gulp-typescript';
 
 // generally create a browser sync instance regardless of the task we are running at the moment
 const sync = browserSync.create();
+
+// generally load the TypeScript project configuration regardless of the task we are running at the moment
+const typescriptProject = typescriptTask.createProject(
+        path.join(__dirname, 'tsconfig.json'),
+        {
+                typescript: typescript
+        }
+);
 
 /**
  * Build
@@ -32,7 +42,7 @@ const sync = browserSync.create();
  * A task which performs all relevant operations to copy and transpile the application resources into a browser friendly
  * format.
  */
-gulp.task('build', ['clean', 'html', 'semantic-copy']);
+gulp.task('build', ['clean', 'html', 'semantic-copy', 'script']);
 
 /**
  * Clean
@@ -74,6 +84,21 @@ gulp.task('html', ['clean'], () => {
                         removeComments:     true
                 }))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/')))
+                .pipe(sync.stream());
+});
+
+/**
+ * Script
+ *
+ * Transpiles all local Typescript files and copies them into the distribution directory.
+ */
+gulp.task('script', ['clean'], () => {
+        return gulp.src([
+                        path.join(__dirname, 'src/app/**/*.ts')
+                ])
+                .pipe(typescriptTask(typescriptProject))
+                .js
+                .pipe(gulp.dest(path.join(__dirname, 'dist/app')))
                 .pipe(sync.stream());
 });
 
@@ -141,4 +166,5 @@ gulp.task('serve', ['build'], () => {
         // Instruct Gulp to watch for file changes and issue their corresponding tasks
         gulp.watch(path.join(__dirname, 'src/html/**/*.html'), ['html']);
         gulp.watch(path.join(__dirname, 'semantic/src/site/**/*'), ['semantic-copy-css']);
+        gulp.watch(path.join(__dirname, 'src/app/**/*.ts'), ['script']);
 });
