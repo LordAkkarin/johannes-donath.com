@@ -22,7 +22,7 @@ declare const $:any;
 
 @Component({
         selector: 'portfolio',
-        template: `<section id="route-content" style="display: none;"><router-outlet></router-outlet></section>`,
+        templateUrl: 'partial/layout.html',
         providers:   [CodeService],
         directives: [ROUTER_DIRECTIVES]
 })
@@ -30,6 +30,16 @@ declare const $:any;
         {
                 path: '/',
                 name: 'Index',
+                component: IndexComponent
+        },
+        {
+                path: '/development',
+                name: 'Development',
+                component: IndexComponent
+        },
+        {
+                path: '/game-design',
+                name: 'GameDesign',
                 component: IndexComponent
         }
 ])
