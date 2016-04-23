@@ -7,5 +7,5 @@
         Page
 --------------------*/
 
-@pageBackground      : #001a33;
+@pageBackground      : #131a20;
 @textColor           : #FFFFFF;
