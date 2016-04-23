@@ -24,36 +24,36 @@ html {
         100% { opacity:1; }
 }
 
-#code-container {
-        z-index: 0;
+#page-container,
+#code-container,
+#page-inner {
+        margin: 0;
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        overflow: hidden;
+}
 
-        padding: 0 10px;
+#code-container {
+        z-index: 0;
+        overflow: hidden;
+        box-sizing: border-box;
+        filter: blur(1px);
+
+        padding: 10px 10px;
 
         pre {
                 padding: 0;
                 margin: 0;
-                color: rgba(255, 255, 255, 0.5);
+                color: rgba(255, 255, 255, 0.2);
         }
 
         .cursor {
                 opacity: 1;
                 animation: blink 0.7s infinite;
-                background-color: rgba(255, 255, 255, 0.5);
+                background-color: rgba(255, 255, 255, 0.2);
         }
-}
-
-#page-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
 }
 
 #page-inner {

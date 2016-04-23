@@ -14,19 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {Component, OnInit} from 'angular2/core';
+import {Component, OnInit} from "angular2/core";
+import {CodeService} from "./code.service";
 declare const $:any;
 
 @Component({
-        selector: 'portfolio',
-        templateUrl: 'partial/index.html'
+        selector:    'portfolio',
+        templateUrl: 'partial/index.html',
+        providers:   [CodeService]
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
+        private codeService:CodeService;
+
+        constructor(private codeService:CodeService) {
+                this.codeService = codeService;
+        }
 
         /**
          * {@inheritDoc}
          */
         ngOnInit():any {
                 $('#page-loader').dimmer('hide');
+                this.codeService.printCode('#code-container > pre > .content');
         }
 }

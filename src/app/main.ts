@@ -15,8 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {bootstrap}    from 'angular2/platform/browser';
-import {AppComponent} from './app.component';
+import {bootstrap} from "angular2/platform/browser";
+import {AppComponent} from "./app.component";
 
 /**
  * As per Angular2 requirements we will manually bootstrap the application. This will automatically register context
