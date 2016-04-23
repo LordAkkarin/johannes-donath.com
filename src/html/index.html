@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+        <head>
+                <title>Johannes Donath</title>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+                <!-- Stylesheets -->
+                <link rel="stylesheet" type="text/css" href="3rdParty/normalize.css/normalize.css" />
+                <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css" />
+                <link rel="stylesheet" type="text/css" href="style/page.css" />
+
+                <!-- Libraries -->
+                <script src="3rdParty/es6-shim/es6-shim.min.js"></script>
+                <script src="3rdParty/systemjs/dist/system-polyfills.js"></script>
+                <script src="3rdParty/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+                <script src="3rdParty/angular2/bundles/angular2-polyfills.js"></script>
+                <script src="3rdParty/systemjs/dist/system.src.js"></script>
+                <script src="3rdParty/rxjs/bundles/Rx.js"></script>
+                <script src="3rdParty/angular2/bundles/angular2.dev.js"></script>
+
+                <!-- SystemJS -->
+                <script>
+                        System.config({
+                                packages: {
+                                        app: {
+                                                format: 'register',
+                                                defaultExtension: 'js'
+                                        }
+                                }
+                        });
+                        System.import('app/main').then(null, console.error.bind(console));
+                </script>
+        </head>
+        <body>
+                <portfolio>
+                        <div id="page-loader" class="ui blurring basic segment">
+                                <div class="ui active dimmer">
+                                        <div class="ui loader"></div>
+                                </div>
+                        </div>
+                </portfolio>
+        </body>
+</html>
