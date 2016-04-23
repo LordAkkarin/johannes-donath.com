@@ -16,6 +16,7 @@
  */
 'use strict';
 import browserSync from 'browser-sync';
+import clean from 'gulp-clean';
 import gulp from 'gulp';
 import htmlmin from 'gulp-htmlmin';
 import path from 'path';
@@ -32,11 +33,21 @@ const sync = browserSync.create();
 gulp.task('build', ['html']);
 
 /**
+ * Clean
+ *
+ * Empties the distribution directory to ensure a clean build.
+ */
+gulp.task('clean', () => {
+        return gulp.src(path.join(__dirname, 'dist/**/*'))
+                .pipeline(clean());
+});
+
+/**
  * Default
  *
  * An entry point for gulp when invoking without specifying a target.
  */
-gulp.task('default', ['build']);
+gulp.task('default', ['clean', 'build']);
 
 /**
  * Development
@@ -44,7 +55,7 @@ gulp.task('default', ['build']);
  * An entry point for users who wish to tinker with the application without worrying about manually invoking the
  * compiler or reloading the website.
  */
-gulp.task('development', ['serve']);
+gulp.task('development', ['clean', 'serve']);
 
 /**
  * HTML
@@ -52,7 +63,7 @@ gulp.task('development', ['serve']);
  * Copies all static HTML files to the distribution directory and strips unnecessary characters such as whitespaces and
  * newlines.
  */
-gulp.task('html', () => {
+gulp.task('html', ['clean'], () => {
         return gulp.src(path.join(__dirname, 'src/html/**/*.html'))
                 .pipe(htmlmin({
                         caseSensitive:      true,
