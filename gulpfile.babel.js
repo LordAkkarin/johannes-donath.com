@@ -69,6 +69,28 @@ gulp.task('clean', () => {
 });
 
 /**
+ * Dependencies
+ *
+ * Copies a set of known application dependencies to their respective directory within the distribution.
+ */
+gulp.task('dependencies', ['clean'], () => {
+        return gulp.src([
+                        'es6-shim/es6-shim.min.js',
+                        'systemjs/dist/system-polyfills.js',
+                        'angular2/bundles/angular2-polyfills.js',
+                        'angular2/es6/dev/src/testing/shims_for_IE.js',
+                        'systemjs/dist/system.src.js',
+                        'rxjs/bundles/Rx.js',
+                        'angular2/bundles/angular2.dev.js',
+                        'angular2/bundles/angular2-polyfills.js',
+                        'angular2/bundles/router.dev.js'
+                ], {
+                        cwd: "node_modules/**"
+                })
+                .pipe(gulp.dest("dist/3rdParty/"));
+});
+
+/**
  * HTML
  *
  * Copies all static HTML files to the distribution directory and strips unnecessary characters such as whitespaces and
@@ -92,7 +114,7 @@ gulp.task('html', ['clean'], () => {
  *
  * Transpiles all local Typescript files and copies them into the distribution directory.
  */
-gulp.task('script', ['clean'], () => {
+gulp.task('script', ['clean', 'dependencies'], () => {
         return gulp.src([
                         path.join(__dirname, 'src/app/**/*.ts')
                 ])
