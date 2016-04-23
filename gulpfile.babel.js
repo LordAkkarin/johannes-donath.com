@@ -15,10 +15,13 @@
  * limitations under the License.
  */
 'use strict';
+import autoprefixer from 'gulp-autoprefixer';
 import browserSync from 'browser-sync';
+import cleanCSS from 'gulp-clean-css';
 import del from 'del';
 import gulp from 'gulp';
 import htmlmin from 'gulp-htmlmin';
+import less from 'gulp-less';
 import path from 'path';
 import semanticBuild from './semantic/tasks/build';
 import semanticBuildCss from './semantic/tasks/build/css';
@@ -34,7 +37,7 @@ const typescriptProject = tsc.createProject(path.join(__dirname, 'tsconfig.json'
  * A task which performs all relevant operations to copy and transpile the application resources into a browser friendly
  * format.
  */
-gulp.task('build', ['dependencies', 'html', 'semantic-copy', 'script']);
+gulp.task('build', ['dependencies', 'html', 'semantic-copy', 'script', 'stylesheet']);
 
 /**
  * Default
@@ -177,5 +180,25 @@ gulp.task('serve', ['build'], () => {
         // Instruct Gulp to watch for file changes and issue their corresponding tasks
         gulp.watch(path.join(__dirname, 'src/html/**/*.html'), ['html']);
         gulp.watch(path.join(__dirname, 'semantic/src/site/**/*'), ['semantic-copy-css']);
+        gulp.watch(path.join(__dirname, 'src/less/**/*.less'), ['stylesheet']);
         gulp.watch(path.join(__dirname, 'src/app/**/*.ts'), ['script']);
+});
+
+/**
+ * Stylesheet
+ *
+ * Transpiles a set of application specific less stylesheets and copies them into the distribution directory.
+ */
+gulp.task('stylesheet', () => {
+        return gulp.src(path.join(__dirname, 'src/less/**/*.less'))
+                .pipe(less())
+                .pipe(autoprefixer({
+                        browsers: ['last 2 versions'],
+                        cascade:  false
+                }))
+                .pipe(cleanCSS({debug: true}, function (details) {
+                        console.log('Compressed ' + details.name + ' from ' + details.stats.originalSize + ' to ' + details.stats.minifiedSize + ' bytes');
+                }))
+                .pipe(gulp.dest(path.join(__dirname, 'dist/style/')))
+                .pipe(sync.stream());
 });
