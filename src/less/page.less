@@ -18,10 +18,44 @@ html {
         overflow-y: hidden;
 }
 
+@keyframes blink {
+        0% { opacity:1; }
+        50% { opacity:0; }
+        100% { opacity:1; }
+}
+
+#code-container {
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow: hidden;
+
+        padding: 0 10px;
+
+        pre {
+                padding: 0;
+                margin: 0;
+                color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cursor {
+                opacity: 1;
+                animation: blink 0.7s infinite;
+                background-color: rgba(255, 255, 255, 0.5);
+        }
+}
+
 #page-container {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
+}
+
+#page-inner {
+        z-index: 1;
 }
