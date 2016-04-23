@@ -17,11 +17,13 @@
 import {Component, OnInit} from "angular2/core";
 import {IndexComponent} from "./index.component";
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
+import {CodeService} from "./code.service";
 declare const $:any;
 
 @Component({
         selector: 'portfolio',
         template: `<router-outlet></router-outlet>`,
+        providers:   [CodeService],
         directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
@@ -32,11 +34,17 @@ declare const $:any;
         }
 ])
 export class AppComponent implements OnInit {
+        private codeService : CodeService;
+
+        constructor(private _codeService : CodeService) {
+                this.codeService = _codeService;
+        }
 
         /**
          * {@inheritDoc}
          */
         ngOnInit():any {
                 $('#page-loader').dimmer('hide');
+                this.codeService.printCode('#code-container > pre > .content');
         }
 }

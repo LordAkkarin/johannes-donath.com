@@ -15,30 +15,20 @@
  * limitations under the License.
  */
 import {Component} from "angular2/core";
-import {CodeService} from "./code.service";
 import {PageComponent} from "./page.component";
 import {ComponentInstruction} from "angular2/router";
 declare const $:any;
 
 @Component({
-        templateUrl: 'partial/index.html',
-        providers:   [CodeService]
+        templateUrl: 'partial/index.html'
 })
 export class IndexComponent extends PageComponent{
-        private codeService : CodeService;
-
-        constructor(private _codeService : CodeService) {
-                super();
-
-                this.codeService = _codeService;
-        }
 
         /**
          * {@inheritDoc}
          */
         routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
                 return super.routerOnActivate(nextInstruction, prevInstruction).then($.proxy(function() {
-                        this.codeService.printCode('#code-container > pre > .content');
                 }, this));
         }
 }
