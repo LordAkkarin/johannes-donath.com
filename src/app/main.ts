@@ -15,12 +15,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import {provide} from "angular2/core";
 import {bootstrap} from "angular2/platform/browser";
 import {AppComponent} from "./app.component";
-import {ROUTER_PROVIDERS} from 'angular2/router';
+import {LocationStrategy, HashLocationStrategy, ROUTER_PROVIDERS} from 'angular2/router';
 
 /**
  * As per Angular2 requirements we will manually bootstrap the application. This will automatically register context
  * objects for the passed component (in this case <portfolio>).
  */
-bootstrap(AppComponent, [ROUTER_PROVIDERS]);
+bootstrap(AppComponent, [ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy})]);
