@@ -15,6 +15,7 @@
  * limitations under the License.
  */
 import {ComponentInstruction, OnActivate, OnDeactivate} from 'angular2/router';
+declare const $:any;
 
 /**
  * Provides an abstract base component for all pages.
@@ -26,7 +27,9 @@ export abstract class PageComponent implements OnActivate, OnDeactivate {
          */
         routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
                 return new Promise((resolve, reject) => {
-                        resolve();
+                        $('portfolio').slideDown(250, function() {
+                                resolve();
+                        });
                 });
         }
 
@@ -35,7 +38,9 @@ export abstract class PageComponent implements OnActivate, OnDeactivate {
          */
         routerOnDeactivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
                 return new Promise((resolve, reject) => {
-                        resolve();
+                        $('portfolio').slideUp(250, function() {
+                                resolve();
+                        });
                 });
         }
 }
