@@ -23,12 +23,4 @@ declare const $:any;
         templateUrl: 'partial/index.html'
 })
 export class IndexComponent extends PageComponent{
-
-        /**
-         * {@inheritDoc}
-         */
-        routerOnActivate(nextInstruction:ComponentInstruction, prevInstruction:ComponentInstruction):any|Promise<any> {
-                return super.routerOnActivate(nextInstruction, prevInstruction).then($.proxy(function() {
-                }, this));
-        }
 }
