@@ -45,15 +45,6 @@ const typescriptProject = typescriptTask.createProject(
 gulp.task('build', ['clean', 'html', 'semantic-copy', 'script']);
 
 /**
- * Clean
- *
- * Empties the distribution directory to ensure a clean build.
- */
-gulp.task('clean', () => {
-        return del(path.join(__dirname, 'dist'));
-});
-
-/**
  * Default
  *
  * An entry point for gulp when invoking without specifying a target.
@@ -67,6 +58,15 @@ gulp.task('default', ['build']);
  * compiler or reloading the website.
  */
 gulp.task('development', ['serve']);
+
+/**
+ * Clean
+ *
+ * Empties the distribution directory to ensure a clean build.
+ */
+gulp.task('clean', () => {
+        return del(path.join(__dirname, 'dist'));
+});
 
 /**
  * HTML
