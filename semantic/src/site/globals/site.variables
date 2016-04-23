@@ -20,3 +20,12 @@
 
 @pageBackground      : #131a20;
 @textColor           : #FFFFFF;
+
+
+/*-------------------
+       Links
+--------------------*/
+
+@linkColor           : #56758f;
+@linkHoverColor      : saturate(@linkColor, 20);
+@linkHoverUnderline  : underline;
