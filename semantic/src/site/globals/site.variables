@@ -2,6 +2,17 @@
      User Global Variables
 *******************************/
 
+/*-------------------
+       Fonts
+--------------------*/
+
+@fontName          : 'Roboto Mono';
+
+@headerFont        : @fontName, 'Monospace', 'Lucida Console', Monaco, monospace;
+@pageFont          : @fontName, 'Monospace', 'Lucida Console', Monaco, monospace;
+
+@googleFontName    : 'Roboto+Mono';
+
 
 /*-------------------
         Page
