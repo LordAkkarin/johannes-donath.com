@@ -16,11 +16,12 @@
  */
 import {Component} from "angular2/core";
 import {PageComponent} from "./page.component";
-import {ComponentInstruction} from "angular2/router";
+import {ROUTER_DIRECTIVES} from 'angular2/router';
 declare const $:any;
 
 @Component({
-        templateUrl: 'partial/index.html'
+        templateUrl: 'partial/index.html',
+        directives: [ROUTER_DIRECTIVES]
 })
 export class IndexComponent extends PageComponent{
 }
