@@ -87,10 +87,13 @@ gulp.task('dependencies', () => {
                         'angular2/bundles/angular2-polyfills.js',
                         'angular2/es6/dev/src/testing/shims_for_IE.js',
                         'systemjs/dist/system.src.js',
+                        'systemjs/dist/system.js',
                         'rxjs/bundles/Rx.js',
                         'angular2/bundles/angular2.dev.js',
+                        'angular2/bundles/angular2.js',
                         'angular2/bundles/angular2-polyfills.js',
                         'angular2/bundles/router.dev.js',
+                        'angular2/bundles/router.js',
                         'jquery/dist/jquery.min.js',
                         'jquery/dist/jquery.min.map'
                 ], {
