@@ -1,0 +1,53 @@
+<main class="ui basic segment">
+        <p>While I worked on many projects, not all of my clients wish to appear here. But here's a list of projects I'm especially fond of anyways:</p>
+</main>
+<section class="ui vertical segment">
+        <article class="ui divided grid">
+                <div class="ui row tab" data-tab="observer">
+                        <div class="four wide center aligned column">
+                                <img class="ui image" src="image/observer.png" />
+                        </div>
+                        <div class="twelve wide column">
+                                <h4>The Observer</h4>
+                                <p>Technologies: Java 8, Spring, Hibernate, JPA, LXC, nginx, HTML 5, CSS 3</p>
+                                <p>This project is probably one of my most favorite ones to this day. Launched in April 2016, The Observer is a web comic project which I designed an entire CMS for. While this has been a pro bono project, it has given me a good opportunity to be part of the creative process while proving my web development skills in a big scale web application.</p>
+
+                                <a href="https://www.the-observer.de" target="_blank">Website &raquo;</a>
+                        </div>
+                </div>
+                <div class="ui row tab" data-tab="gofast">
+                        <div class="four wide center aligned column">
+                                <img class="ui bordered rounded image" src="image/gofast.jpg" />
+                        </div>
+                        <div class="twelve wide column">
+                                <h4>goFast.live</h4>
+                                <p>Technologies: Java 8, Spring, Hibernate, JPA, LXC, nginx, HTML 5, TypeScript, Angular2, CSS 3</p>
+                                <p>Currently under heavy development, goFast.live provides an easy to use solution for gamers who wish to participate in speedrun races effectively obsoleting older platforms which do not focus on user experience.</p>
+
+                                <a href="https://www.the-observer.de" target="_blank">Website &raquo;</a>
+                        </div>
+                </div>
+                <div class="ui row tab" data-tab="johannesdonath">
+                        <div class="sixteen wide column">
+                                <h4>johannes-donath.com</h4>
+                                <p>Technologies: HTML 5, TypeScript, Angular2, CSS 3</p>
+                                <p>And obviously there is this website! While it might not look like a complex piece of software, it still consists of a bigger set of TypeScript components, build scripts and CSS 3 stylesheets.</p>
+                                <p>But wait! There's more! Make sure to also check out my <a [routerLink]="['OpenSource']">Open Source Projects</a> as they provide a much nicer list of libraries and applications I work(ed) on.</p>
+                        </div>
+                </div>
+        </article>
+</section>
+<section class="ui vertical segment">
+        <div class="ui equal width grid">
+                <div class="left aligned column">
+                        <a [routerLink]="['Index']" *ngIf="firstPage()">&laquo; Back</a>
+                        <a (click)="previousPage()" href="#" *ngIf="!firstPage()">&laquo; Back</a>
+                </div>
+                <div class="center aligned column">
+                        <a [routerLink]="['Index']" *ngIf="!firstPage()">Back to Home</a>
+                </div>
+                <div class="right aligned column">
+                        <a (click)="nextPage()" href="#" *ngIf="!lastPage()">Next &raquo;</a>
+                </div>
+        </div>
+</section>
