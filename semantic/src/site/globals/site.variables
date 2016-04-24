@@ -29,3 +29,11 @@
 @linkColor           : #56758f;
 @linkHoverColor      : saturate(@linkColor, 20);
 @linkHoverUnderline  : underline;
+
+/*-------------------
+     Neutral Text
+--------------------*/
+
+@darkTextColor               : rgba(255, 255, 255, 0.7);
+@mutedTextColor              : rgba(255, 255, 255, 0.4);
+@lightTextColor              : rgba(255, 255, 255, 1);
