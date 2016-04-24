@@ -18,6 +18,7 @@ import {Component, OnInit} from "angular2/core";
 import {IndexComponent} from "./index.component";
 import { ReferencesComponent } from './references.component';
 import { OpenSourceComponent } from './opensource.component';
+import { LanguagesComponent } from './languages.component';
 import {RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 import {CodeService} from "./code.service";
 declare const $:any;
@@ -44,6 +45,11 @@ declare const $:any;
                 path: '/open-source',
                 name: 'OpenSource',
                 component: OpenSourceComponent
+        },
+        {
+                path: '/languages',
+                name: 'Languages',
+                component: LanguagesComponent
         }
 ])
 export class AppComponent implements OnInit {
