@@ -39,7 +39,7 @@ const typescriptProject = tsc.createProject(path.join(__dirname, 'tsconfig.json'
  * A task which performs all relevant operations to copy and transpile the application resources into a browser friendly
  * format.
  */
-gulp.task('build', ['dependencies', 'data', 'html', 'semantic-copy', 'script', 'stylesheet']);
+gulp.task('build', ['dependencies', 'data', 'image', 'html', 'semantic-copy', 'script', 'stylesheet']);
 
 /**
  * Default
@@ -115,6 +115,20 @@ gulp.task('html', () => {
                         removeComments:     true
                 }))
                 .pipe(gulp.dest(path.join(__dirname, 'dist/')))
+                .pipe(sync.stream());
+});
+
+/**
+ * Image
+ *
+ * Copies all static images to the distribution directory.
+ */
+gulp.task('image', () => {
+        return gulp.src([
+                        path.join(__dirname, 'src/image/**/*.png'),
+                        path.join(__dirname, 'src/image/**/*.jpg')
+                ])
+                .pipe(gulp.dest(path.join(__dirname, 'dist/image/')))
                 .pipe(sync.stream());
 });
 
@@ -200,6 +214,10 @@ gulp.task('serve', ['build'], () => {
         gulp.watch(path.join(__dirname, 'src/less/**/*.less'), ['stylesheet']);
         gulp.watch(path.join(__dirname, 'src/app/**/*.ts'), ['script']);
         gulp.watch(path.join(__dirname, 'src/data/**/*'), ['data']);
+        gulp.watch([
+                path.join(__dirname, 'src/image/**/*.png'),
+                path.join(__dirname, 'src/image/**/*.jpg')
+        ], ['image']);
 });
 
 /**
