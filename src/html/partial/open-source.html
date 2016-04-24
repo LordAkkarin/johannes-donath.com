@@ -1,0 +1,69 @@
+<main class="ui basic segment">
+        <p>Within the past few years I have worked on numerous open source projects, both in teams and alone, but here is a list of my favorite projects:</p>
+</main>
+<section class="ui vertical segment">
+        <article class="ui tab" data-tab="lithium">
+                <h1>Lithium</h1>
+                <p>Technologies: Java 8, netty, peer-to-peer networking, JavaFX, Cryptography (AES, RSA and Diffie-Hellman)</p>
+                <p>Lithium is my latest big project in a long series. Its mission is to provide a de-centralized secure and simple to use crypto-messenger which protects the privacy of its users. Without doubt this is one of my favorite projects clocking in with just about two weeks of work for a complete working prototype along with research on the subject of peer-to-peer communication.</p>
+                <a href="https://github.com/LordAkkarin/Lithium" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="ikarus">
+                <h1>Ikarus</h1>
+                <p>Technologies: PHP 5.4, HTML 5, CSS 3, JavaScript</p>
+                <p>Ikarus will always have a special place in my heart as it has been my first bigger attempt of designing a working fully-fledged PHP framework which was capable of adjusting to various environments. While it has ended a couple of years ago with me moving on to Java development, it is still around and very much capable of running applications to this day.</p>
+                <a href="https://github.com/Evil-Co-Legacy/Ikarus" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="powersweeper">
+                <h1>Powersweeper</h1>
+                <p>Technologies: Java 8, Selenium, JavaScript</p>
+                <p>Created out of a joke (in short "We wasted so much time on this stupid Minesweeper game, let's at least program a bot for it which kicks ass"), the Powersweeper turned out to be a great work of uncoordinated collaboration (interfaces were declared as a guideline while the implementation was created around it) which still works rather well today ... and is probably entirely against the rules of the website it was designed to run on.</p>
+                <a href="https://github.com/LordAkkarin/Powersweeper" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="candle">
+                <h1>Candle</h1>
+                <p>Technologies: Java 8, ANTLR</p>
+                <p>The Torchmind Configuration Syntax (or Candle for short - which does not seem to have any relation to its full name), is an attempt to simplify server side configurations for less tech savvy users as it aims to stick as close to a natural approach of expressing objects as possible.</p>
+                <a href="https://github.com/Torchmind/Candle" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="upm">
+                <h1>UPM</h1>
+                <p>Technologies: Java 8, XSD</p>
+                <p>The Universe Package Manager is a concept I recently experimented around with and while it is currently only in a draft stage (e.g. most of its descriptors are fully designed buts its full implementation is still on hold as I experiment around with various concepts) it still provides an interesting starting point for the future of modular applications.</p>
+                <a href="https://github.com/Torchmind/UPM" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="mango">
+                <h1>Mango</h1>
+                <p>Technologies: Java 8</p>
+                <p>Mango is so far one of the biggest collections of entirely unrelated implementations for Java I've written. It provides countless methods of simplifying syntax to improve maintainability of Java code and regularly receives new features as I realize that I'm writing more code than I should be.</p>
+                <a href="https://github.com/Torchmind/Mango" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="padlock">
+                <h1>Padlock</h1>
+                <p>Technologies: Java 8, Cryptography (RSA)</p>
+                <p>While it was never used as it didn't have a use with the static web application approach my customers required at the time, Padlock provided (and still provides today) a secure method of implementing session less authentication with web servers. The library was mostly aimed at rich web applications and desktop clients which cannot rely on cookies.</p>
+                <a href="https://github.com/Torchmind/Padlock" target="_blank">Website &raquo;</a>
+        </article>
+        <article class="ui tab" data-tab="plugin-annotations">
+                <h1>Bukkit Plugin Annotations</h1>
+                <p>Technologies: Java 8, Annotation Processing</p>
+                <p>Inspired by an existing solution, which just wasn't available in any maven repository nor utilized Java 8's capabilities of repeating annotations, the Bukkit Plugin annotations provide a great method of generating plugin descriptors for the Bukkit Minecraft Server API.</p>
+                <a href="https://github.com/LordAkkarin/bukkit-plugin-annotations" target="_blank">Website &raquo;</a>
+        </article>
+</section>
+<section class="ui vertical segment">
+        <p>There is obviously a much bigger amount of code to be found on my <a href="https://github.com/LordAkkarin" target="_blank">personal GitHub account</a> as well as the <a href="https://github.com/Torchmind" target="_blank">organization GitHub profile</a> (also don't forget to check out the <a href="https://github.com/Evil-Co" target="_blank">old organization profile</a> and the <a href="https://github.com/Evil-Co-Legacy" target="_blank">legacy profile</a>).</p>
+
+        <div class="ui equal width grid">
+                <div class="left aligned column">
+                        <a [routerLink]="['Index']" *ngIf="firstPage()">&laquo; Back</a>
+                        <a (click)="previousPage()" href="#" *ngIf="!firstPage()">&laquo; Back</a>
+                </div>
+                <div class="center aligned column">
+                        <a [routerLink]="['Index']" *ngIf="!firstPage()">Back to Home</a>
+                </div>
+                <div class="right aligned column">
+                        <a (click)="nextPage()" href="#" *ngIf="!lastPage()">Next &raquo;</a>
+                </div>
+        </div>
+</section>
