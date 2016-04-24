@@ -15,10 +15,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {provide} from "angular2/core";
+import {provide, enableProdMode} from "angular2/core";
 import {bootstrap} from "angular2/platform/browser";
 import {AppComponent} from "./app.component";
 import {LocationStrategy, HashLocationStrategy, ROUTER_PROVIDERS} from 'angular2/router';
+
+// NOTE: You may want to remove this line when developing your application as it disables some assertions within the
+// framework in favor of performance!
+enableProdMode();
 
 /**
  * As per Angular2 requirements we will manually bootstrap the application. This will automatically register context
